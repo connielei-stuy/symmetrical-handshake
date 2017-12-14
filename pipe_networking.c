@@ -43,6 +43,11 @@ int client_handshake(int *to_server) {
   mkfifo(hand, 0644); //creates private FIFO
 
   int upstream = open("wkp", O_WRONLY); //connects to server's WKP
+  if(upstream == -1){
+    printf("server not running\n");
+    remove(hand);
+    exit(0);
+  }
   write(upstream, hand, sizeof(hand)); //sends private FIFO name to server
 
   int downstream = open(hand, O_RDONLY); //opens private FIFO

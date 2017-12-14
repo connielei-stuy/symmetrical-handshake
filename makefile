@@ -19,5 +19,4 @@ clean:
 	touch foo.o foo~
 	rm *.o
 	rm *~
-	rm client
-	rm server
+	clear
